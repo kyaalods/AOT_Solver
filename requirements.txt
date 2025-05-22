@@ -4,4 +4,4 @@ python-socketio==5.8.0
 python-engineio==4.3.3
 eventlet==0.33.3
 gevent==22.10.2
-webview==3.8.2
+
