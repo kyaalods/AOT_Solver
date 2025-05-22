@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: hcap-harvester
+    env: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    autoDeploy: true
+    envVars:
+      - key: HCAP_SITE_KEY
+        value: f06e6c50-85a8-45c8-87d0-21a2b65856fe

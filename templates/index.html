@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <title>HRB Hcap Harvester</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <script src="https://js.hcaptcha.com/1/api.js?onload=onHcaptchaLoad" async defer></script>
+    <script src="/static/index.js"></script>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #161620; /* Dark background */
+      }
+
+      #loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(13, 13, 22, 0.85); /* Dark background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .loader-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .loader {
+        width: 80px;
+        height: 80px;
+        animation: rotate 2s linear infinite;
+      }
+
+      .loader-path {
+        stroke: white;
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: 0;
+        transform-origin: center;
+        animation: dash 1.5s ease-in-out infinite;
+      }
+
+      .loader-text {
+        margin-top: 20px;
+        color: white;
+        font-size: 14px;
+        font-family: Arial, sans-serif;
+        letter-spacing: 1px;
+        font-style: bold;
+        font-size: 15px;
+      }
+
+      @keyframes rotate {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes dash {
+        0% {
+          stroke-dasharray: 1, 150;
+          stroke-dashoffset: 0;
+        }
+        50% {
+          stroke-dasharray: 90, 150;
+          stroke-dashoffset: -35;
+        }
+        100% {
+          stroke-dasharray: 90, 150;
+          stroke-dashoffset: -124;
+        }
+      }
+
+
+
+
+    </style>
+  </head>
+  <body>
+    <form id="hcaptcha-form">
+    <div class="h-captcha"
+        data-sitekey="{{ site_key }}"
+        data-callback="onVerify">
+    </div>
+  </form>
+
+  <!-- Loading overlay -->
+  <div id="loading-overlay" style="display: none;">
+    <div class="loader-wrapper">
+      <svg class="loader" viewBox="0 0 50 50">
+        <circle class="loader-path" cx="25" cy="25" r="20" fill="none" />
+      </svg>
+      <div class="loader-text">Token successfully harvested</div>
+    </div>
+  </div>
+
+ 
+    
+  </body>
+</html>
