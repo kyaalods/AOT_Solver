@@ -59,5 +59,5 @@ function onVerify(token) {
 
         // ✅ Reload page after requesting next task
         //window.location.reload();
-    }, 4500);
+    }, 2500);
 }
